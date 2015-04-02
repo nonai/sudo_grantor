@@ -27,6 +27,11 @@ if *actionPtr == true {
 			fmt.Println("Success.") }
 		fmt.Println(string(output))
 		} else {
+			output1, err := exec.Command("sh", "-c", delete).Output()
+		if err !=nil {
+                        log.Fatal(err) } else {
+                        fmt.Println("Checked for existing user. Passed.") }
+                fmt.Println(string(output))
 			output, err := exec.Command("sh", "-c", add).Output()
                 if err !=nil {
                         log.Fatal(err) } else {

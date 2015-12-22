@@ -16,9 +16,9 @@ func main() {
 
         hosts := [] string {*hostPtr}
         for _,element := range hosts {
-                add := "/usr/bin/ssh -o StrictHostKeyChecking=no -i /etc/fk-ops-fai/keys/provisional " + element + " \"sudo echo -e '" + *userPtr + " ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/temp; sudo chmod 440 /etc/sudoers.d/temp \" ";
+                add := "/usr/bin/ssh -o StrictHostKeyChecking=no -i /etc/provisional-key " + element + " \"sudo echo -e '" + *userPtr + " ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/temp; sudo chmod 440 /etc/sudoers.d/temp \" ";
 
-                delete := "/usr/bin/ssh -o StrictHostKeyChecking=no -i /etc/fk-ops-fai/keys/provisional " + element + " \"sudo sed -i /'" + *userPtr + "/d' /etc/sudoers.d/* \" ";
+                delete := "/usr/bin/ssh -o StrictHostKeyChecking=no -i /etc/provisional-key " + element + " \"sudo sed -i /'" + *userPtr + "/d' /etc/sudoers.d/* \" ";
 
 if *actionPtr == true {
                 output, err := exec.Command("sh", "-c", delete).Output()
